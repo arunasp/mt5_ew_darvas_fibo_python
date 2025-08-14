@@ -3,19 +3,18 @@
 mt5_python_lib is a small Python package that provides Darvas box detection and simple Elliott wave detection using OHLC data fetched from a running MetaTrader 5 (MT5) terminal. The package includes a lightweight HTTP server that exposes computed boxes, wave nodes and Fibonacci retracement levels for use by MetaTrader 5 clients (e.g., MQL5 indicators using WebRequest).
 
 This repackaging includes:
-- Python main package:
-  - ew_darvas_server.py - HTTP server entrypoint
-  - requirements.txt - pip dependencies
-  - conversation_log.txt - chat conversation log (for traceability)
-- Python/mt5_python_lib package:
+- mt5_python_lib package:
   - types.py
   - mt5_client.py
   - darvas_detector.py
   - elliott_detector.py
+- darvas_server.py - HTTP server entrypoint
 - README.md (this file)
+- requirements.txt - pip dependencies
+- conversation_log.txt - chat conversation log (for traceability)
 
 Requirements
-- Python 3.13.6  (recommended). Newer versions may work but the `MetaTrader5` package might lag behind the newest Python releases.
+- Python 3.13.6 or later
 - MetaTrader 5 terminal installed and running on the same machine
 - Python packages: pandas, numpy, MetaTrader5
 
@@ -34,7 +33,7 @@ Usage
    - Tools  Options  Expert Advisors  Allow WebRequest for listed URL
    - Add: http://127.0.0.1 (or http://127.0.0.1:5000)
 4. Run the server:
-   python ew_darvas_server.py
+   python darvas_server.py
    - Server default: http://127.0.0.1:5000/darvas
    - The server will fetch the most recent H1 bars (default) from MT5, compute Darvas boxes and Elliott patterns and return a compact textual payload.
 5. Use the MQL5 indicator/script to WebRequest that endpoint and parse the returned payload for plotting.
